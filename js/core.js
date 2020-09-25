@@ -51,7 +51,9 @@ function buscarTarea() {
                         let contenidoHtml = "";
                         tasks.forEach((task) => {
                             contenidoHtml += `
-                                <li><a href="#" class="task-item">${task.titulo}</a></li>
+                                <li><a href="#" class="task-item" onclick="modificarTarea(${task.id}, event)">
+                                    ${task.titulo}</a>
+                                </li>
                             `;
                         });
                         $("#task-result").show();
@@ -94,8 +96,6 @@ function modificarTarea(idTarea, evento) {
         contadorDeClicks = true;
         editando = false;
     }
-    let x = evento.cancelable; // verificamos si el evento es cancelable
-    //console.log(x);
     evento.preventDefault();
 }
 
@@ -115,6 +115,7 @@ function agregarOModificarTarea() {
 
         $("#task-form").trigger("reset"); // se resetea el formulario
         mostrarTareas();
+        $('#search').val('');
     });
 }
 
